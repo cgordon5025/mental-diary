@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt')
 
 
 const diaryEntrySchema = new Schema(
@@ -15,7 +14,4 @@ const diaryEntrySchema = new Schema(
     }
 )
 
-
-const DiaryEntry = model('DiaryEntry', diaryEntrySchema)
-
-module.exports = DiaryEntry
+module.exports = diaryEntrySchema

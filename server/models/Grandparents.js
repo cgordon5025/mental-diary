@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt')
 
 
 const grandparentsSchema = new Schema(
@@ -16,6 +15,5 @@ const grandparentsSchema = new Schema(
 )
 
 
-const Grandparents = model('Grandparents', grandparentsSchema)
 
-module.exports = Grandparents
+module.exports = grandparentsSchema

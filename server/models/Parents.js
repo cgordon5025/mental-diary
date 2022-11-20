@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt')
 
 
 const parentsSchema = new Schema(
@@ -16,6 +15,5 @@ const parentsSchema = new Schema(
 )
 
 
-const Parents = model('Parents', parentsSchema)
 
-module.exports = Parents
+module.exports = parentsSchema

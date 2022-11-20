@@ -1,82 +1,45 @@
-const { User, Family, Grandparents, Parents, Siblings, Diary, DiaryEntry } = require('../models');
+const { User } = require('../models');
 
 const resolvers = {
     Query: {
         users: async () => {
-            return await User.find({}).populate('diary').populate({
-                path: 'diary',
-                populate: 'diaryEntry',
-            }).populate('family').populate({
-                path: 'family',
-                populate: 'grandparents'
-            }).populate({
-                path: 'family',
-                populate: 'parents'
-            }).populate({
-                path: 'family',
-                populate: 'siblings'
-            });
-        },
-        diary: async () => {
-            return await Diary.find({}).populate('diaryEntry');
+            return await User.find({}).populate('diaryEntry').populate('grandparents').populate('parents').populate('siblings')
         },
         user: async (parent, args) => {
-            return await User.findById(args.id).populate('diary').populate({
-                path: 'diary',
-                populate: 'diaryEntry',
-            }).populate('family').populate({
-                path: 'family',
-                populate: 'grandparents'
-            }).populate({
-                path: 'family',
-                populate: 'parents'
-            }).populate({
-                path: 'family',
-                populate: 'siblings'
-            });
-        },
-        family: async () => {
-            return await Family.find({}).populate({
-                path: 'family',
-                populate: 'grandparents'
-            }).populate({
-                path: 'family',
-                populate: 'parents'
-            }).populate({
-                path: 'family',
-                populate: 'siblings'
-            })
+            return await User.findById(args.id).populate('diaryEntry').populate('grandparents').populate('parents').populate('siblings')
         },
     },
     // Define the functions that will fulfill the mutations
     Mutation: {
-        addFamily: async (parent, { userId, name }) => {
-            // Create and return the new School object
-            return await User.findByIdAndUpdate(
-                { _id: userId },
-                { $addToSet: { family: name } },
-                { new: true }
-            );
-        },
+
         addGrand: async (parent, { userId, relation, details }) => {
             return await User.findByIdAndUpdate(
                 { _id: userId },
-                { $addToSet: { family: { grandparent: relation, details } } },
+                { $addToSet: { grandparents: { relation, details } } },
                 { new: true }
             )
         },
-        addParent: async (parent, { relation, details }) => {
-            return await Parents.create({ relation, details })
+        addParent: async (parent, { userId, relation, details }) => {
+            return await User.findByIdAndUpdate(
+                { _id: userId },
+                { $addToSet: { parents: { relation, details } } },
+                { new: true }
+            )
         },
-        addSib: async (parent, { name, relation, details }) => {
-            return await Siblings.create({ name, relation, details })
+        addSib: async (parent, { userId, name, relation, details }) => {
+            return await User.findByIdAndUpdate(
+                { _id: userId },
+                { $addToSet: { siblings: { name, relation, details } } },
+                { new: true }
+            )
         },
-        addDiary: async (parent, { owner }) => {
-            // Create and return the new School object
-            return await Diary.create({ owner });
-        },
-        addDiaryEntry: async (parent, { title, description }) => {
-            return await DiaryEntry.create({ title, description })
+
+        addDiaryEntry: async (parent, { userId, title, description }) => {
+            return await User.findByIdAndUpdate(
+                { _id: userId },
+                { $addToSet: { diaryEntry: { title, description } } },
+                { new: true }
+            )
         }
     },
 };

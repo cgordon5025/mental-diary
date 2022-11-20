@@ -1,7 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt')
-
-
+const grandparentsSchema = require('./Grandparents')
+const parentsSchema = require('./Parents')
+const siblingSchema = require('./Sibling')
+const diaryEntrySchema = require('./DiaryEntry')
 const userSchema = new Schema(
     {
         username: {
@@ -20,18 +22,10 @@ const userSchema = new Schema(
             required: true,
             minLength: 8
         },
-        family: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Family"
-            }
-        ],
-        diary: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Diary"
-            }
-        ],
+        grandparents: [grandparentsSchema],
+        parents: [parentsSchema],
+        siblings: [siblingSchema],
+        diaryEntry: [diaryEntrySchema],
 
     }
 )
