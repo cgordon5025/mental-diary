@@ -11,6 +11,11 @@ const typeDefs = gql`
     diaryEntry:[DiaryEntry]
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Grandparents {
     _id: ID
     relation: String
@@ -36,11 +41,13 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(id: ID!): User
-    
+    me: User
   }
 
   # Define which mutations the client is allowed to make
 type Mutation{
+  addUser(username: String!, email: String!, password: String!): Auth
+  login(username:String!, password: String!): Auth
   addGrand(userId:ID!,relation:String,details:String):User
   addParent(userId:ID!,relation:String!,details:String):User
   addSib(userId:ID!,name:String!,relation:String!,details:String):User

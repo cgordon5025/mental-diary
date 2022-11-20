@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from '../../pages/Home'
+import { Link } from "react-router-dom";
 const Header = () => {
     return (
         <>
@@ -10,13 +9,13 @@ const Header = () => {
                     <div id="navbarNav" style={{ marginLeft: "auto" }}>
                         <ul className="navbar-nav">
                             <li className="nav-item ">
-                                <Link className="nav-link" to="/test">Family</Link>
+                                <Link className="nav-link" to="/family">Family</Link>
                             </li>
                             <li className="nav-item ">
-                                <Link className="nav-link" to="/Portfolio/project">Diary</Link>
+                                <Link className="nav-link" to="/login">Login</Link>
                             </li>
                             <li className="nav-item ">
-                                <Link className="nav-link" to="/Portfolio/resume">login/out</Link>
+                                <Link className="nav-link" to="/logout">Logout</Link>
                             </li>
                         </ul>
                     </div>

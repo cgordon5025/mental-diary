@@ -6,6 +6,23 @@ query Users {
       _id
       email
       username
+      grandparents {
+        relation
+        details
+      }
+      parents {
+        relation
+        details
+      }
+      siblings {
+        name
+        relation
+        details
+      }
+      diaryEntry {
+        title
+        description
+      }
     }
   }
 `;

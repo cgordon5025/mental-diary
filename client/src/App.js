@@ -1,11 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+//packages I need to run things
 import React from 'react'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import Home from './pages/Home'
-import Header from './components/Header'
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+
+//the pages
+import Home from './pages/Home'
 import Test from './pages/Test'
+import Family from './pages/Family'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+//Components
+import Header from './components/Header'
+import Footer from './components/Footer'
 const client = new ApolloClient({
   uri: 'graphql',
   cache: new InMemoryCache()
@@ -16,11 +24,12 @@ function App() {
       <Header />
       <Routes >
         <Route path='/' index element={<Home />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/family" element={<Family />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path='/logout' element={<Home />} />
       </Routes>
-      {/* <Home /> */}
+      <Footer />
 
       <div className="App">
         <header className="App-header">
