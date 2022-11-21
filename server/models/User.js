@@ -27,6 +27,12 @@ const userSchema = new Schema(
         siblings: [siblingSchema],
         diaryEntry: [diaryEntrySchema],
 
+    },
+    {
+        toJSON: {
+            getters: true,
+            virtuals: true
+        }
     }
 )
 

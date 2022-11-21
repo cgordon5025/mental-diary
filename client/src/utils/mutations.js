@@ -23,3 +23,52 @@ mutation Login($username: String!, $password: String!) {
     }
   }
 `;
+
+export const ADD_ENTRY = gql`
+mutation AddDiaryEntry($userId: ID!, $title: String!) {
+    addDiaryEntry(userId: $userId, title: $title) {
+      username
+      diaryEntry {
+        title
+        description
+        createdAt
+      }
+    }
+  }`;
+
+export const ADD_GRANDPARENT = gql`
+mutation AddGrand($userId: ID!, $relation: String, $details: String) {
+    addGrand(userId: $userId, relation: $relation, details: $details) {
+      _id
+      username
+      grandparents {
+        relation
+        details
+      }
+    }
+  }
+`;
+
+export const ADD_PARENT = gql`
+mutation AddParent($userId: ID!, $relation: String!) {
+    addParent(userId: $userId, relation: $relation) {
+      username
+      parents {
+        relation
+        details
+      }
+    }
+  }`;
+
+export const ADD_SIBLING = gql`
+  mutation AddSib($userId: ID!, $relation: String!, $name: String!) {
+    addSib(userId: $userId, relation: $relation, name: $name) {
+      username
+      siblings {
+        name
+        relation
+        details
+      }
+    }
+  }
+  `;

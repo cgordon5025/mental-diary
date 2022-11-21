@@ -11,6 +11,12 @@ import Test from './pages/Test'
 import Family from './pages/Family'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import SingleFamily from './pages/SingleFamily'
+import Diary from './pages/Diary'
+import NewEntry from './pages/NewEntry'
+import NewGrandparent from './pages/NewGrandparent'
+import NewParent from './pages/NewParent'
+import NewSibling from './pages/NewSibling'
 //Components
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -25,28 +31,18 @@ function App() {
       <Routes >
         <Route path='/' index element={<Home />} />
         <Route path="/family" element={<Family />} />
+        <Route path="/diary" element={<Diary />} />
+        <Route path="/singlefamily/:userId" element={<SingleFamily />} />
+        <Route path="/newEntry" element={<NewEntry />} />
+        <Route path="/newGrandparent" element={<NewGrandparent />} />
+        <Route path="/newParent" element={<NewParent />} />
+        <Route path="/newSibling" element={<NewSibling />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path='/logout' element={<Home />} />
+
       </Routes>
       <Footer />
-
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
     </ApolloProvider>
   );
 }

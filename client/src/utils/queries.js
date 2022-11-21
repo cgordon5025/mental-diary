@@ -22,6 +22,7 @@ query Users {
       diaryEntry {
         title
         description
+        createdAt
       }
     }
   }
@@ -33,6 +34,16 @@ query user($userId: ID!) {
       _id
       email
       username
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
+query me {
+    me {
+      _id
+      name
+      skills
     }
   }
 `;

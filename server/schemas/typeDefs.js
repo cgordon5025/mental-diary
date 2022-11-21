@@ -36,6 +36,7 @@ const typeDefs = gql`
     _id: ID
     title: String
     description: String
+    createdAt:String
   }
 
   type Query {
