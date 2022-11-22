@@ -23,6 +23,10 @@ const SingleFamily = () => {
             backgroundRepeat: "no repeat",
             backgroundPosition: "center"
         },
+        buttons: {
+            display: "flex",
+            justifyContent: "space-evenly"
+        }
     }
     if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
         return <Navigate to="/singlefamily/" />
@@ -34,11 +38,10 @@ const SingleFamily = () => {
                     <div>Loading...</div>
                 ) : (
                     <>
-                        <h2> Hello</h2>
                         <FamilyList
                             user={user}
                         />
-                        <div>
+                        <div style={styles.buttons}>
                             <Link className="btn btn-block btn-info" to='/newGrandparent'>Add a Grandparent</Link>
                             <Link className="btn btn-block btn-info" to='/newParent'>Add a Parent</Link>
                             <Link className="btn btn-block btn-info" to='/newSibling'>Add a Sibling</Link>

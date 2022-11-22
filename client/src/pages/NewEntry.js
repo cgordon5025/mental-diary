@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_ENTRY } from "../utils/mutations";
+import bgImg from "../Images/homebg.png"
 
 
 const NewEntry = () => {
@@ -20,7 +21,15 @@ const NewEntry = () => {
             [name]: value,
         });
     };
-
+    const styles = {
+        bg: {
+            padding: "5%",
+            backgroundImage: `url(${bgImg})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no repeat",
+            backgroundPosition: "center"
+        },
+    }
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -30,6 +39,8 @@ const NewEntry = () => {
             const { data } = await addEntry({
                 variables: { ...formState },
             });
+            window.location.replace('/mydiary')
+
             // { window.location }
         } catch (e) {
             console.error(e);
@@ -37,7 +48,7 @@ const NewEntry = () => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
+        <main style={styles.bg} className="flex-row justify-center mb-4">
             <div className="col-12 col-lg-10">
                 <div className="card">
                     <h4 className="card-header p-2">New Diary Entry</h4>

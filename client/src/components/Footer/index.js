@@ -7,7 +7,7 @@ const styles = {
 }
 const Footer = () => {
     return (
-        <footer className="w-100 mt-auto bg-info p-4">
+        <footer className="w-100 mt-auto p-4">
             <div className="container text-center ">
                 <h4>
                     Made with{' '}

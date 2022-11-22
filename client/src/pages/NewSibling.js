@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_SIBLING } from "../utils/mutations";
+import bgImg from "../Images/homebg.png"
 
 
 const NewSibling = () => {
@@ -20,7 +21,15 @@ const NewSibling = () => {
             [name]: value,
         });
     };
-
+    const styles = {
+        bg: {
+            padding: "5%",
+            backgroundImage: `url(${bgImg})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no repeat",
+            backgroundPosition: "center"
+        },
+    }
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -30,13 +39,14 @@ const NewSibling = () => {
             const { data } = await addSibling({
                 variables: { ...formState },
             });
+            window.location.replace('/singlefamily')
         } catch (e) {
             console.error(e);
         }
     };
 
     return (
-        <main className="justify-center mb-4">
+        <main style={styles.bg} className="justify-center mb-4">
             <div className="d-flex justify-content-center">
                 <div className="justify-content-center card">
                     <h4 className="card-header p-2">Add a Sibling</h4>

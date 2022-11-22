@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from "../utils/mutations";
+import bgImg from "../Images/homebg.png"
 
 import Auth from '../utils/auth';
 
@@ -22,7 +23,15 @@ const Signup = () => {
             [name]: value,
         });
     };
-
+    const styles = {
+        bg: {
+            padding: "5%",
+            backgroundImage: `url(${bgImg})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no repeat",
+            backgroundPosition: "center"
+        },
+    }
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -40,7 +49,7 @@ const Signup = () => {
     };
 
     return (
-        <main className=" justify-center mb-4">
+        <main style={styles.bg} className=" justify-center mb-4">
             <div className="d-flex justify-content-center ">
                 <div style={{ justifyContent: "center" }} className="card">
                     <h4 className="card-header p-2">Sign Up</h4>

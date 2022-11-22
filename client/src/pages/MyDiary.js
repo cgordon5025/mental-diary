@@ -22,6 +22,7 @@ const MyDiary = () => {
             backgroundPosition: "center"
         },
         button: {
+            display: "flex",
             justifyContent: "center",
 
         }
