@@ -22,7 +22,7 @@ const UserList = ({ users, email }) => {
             <div className="flex-row justify-space-between my-4">
                 {users &&
                     users.map((user) => (
-                        <div key={user._id} >
+                        <div data-key={user._id} >
                             <h2 className="text-center"> {user.username}</h2>
                             <div style={styles.famContainer}>
 
@@ -32,10 +32,11 @@ const UserList = ({ users, email }) => {
                                             Grandparents
                                         </h4>
                                         <div className='card-body'>
-                                            {user.grandparents.map((gp) => {
+                                            {user.grandparents.map((gp, index) => {
                                                 return (
                                                     <>
-                                                        <p>{gp.relation}</p>
+                                                        <p key={gp.grandparentID
+                                                        }>{gp.relation}</p>
                                                         {
                                                             gp.details ? (
                                                                 <li>{gp.details}</li>
@@ -58,10 +59,10 @@ const UserList = ({ users, email }) => {
                                         </h4>
                                         <div className='card-body'>
 
-                                            {user.parents.map((parent) => {
+                                            {user.parents.map((parent, index) => {
                                                 return (
                                                     <>
-                                                        <p>{parent.relation}</p>
+                                                        <p key={parent.parentId}>{parent.relation}</p>
                                                         {parent.details ? (
                                                             <li>{parent.details}</li>
                                                         ) : (
@@ -81,10 +82,10 @@ const UserList = ({ users, email }) => {
                                             Siblings
                                         </h4>
                                         <div className='card-body'>
-                                            {user.siblings.map((sibling) => {
+                                            {user.siblings.map((sibling, index) => {
                                                 return (
                                                     <>
-                                                        <p>{sibling.name} {sibling.relation}</p>
+                                                        <p key={sibling.siblingId}>{sibling.name} {sibling.relation}</p>
                                                         {sibling.details ? (
                                                             <li>{sibling.details}</li>
                                                         ) : (

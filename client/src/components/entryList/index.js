@@ -1,6 +1,6 @@
 import React from 'react'
 
-const entryList = ({ users, email }) => {
+const myEntryList = ({ users, email }) => {
     if (!users.length) {
         return <h3> No Profiles Yet</h3>
     }
@@ -28,7 +28,7 @@ const entryList = ({ users, email }) => {
                                 {user.diaryEntry.map((singleEntry) => {
                                     return (
                                         <>
-                                            <div style={styles.card} className='card'>
+                                            <div key={singleEntry.diaryEntryId} style={styles.card} className='card'>
 
                                                 <div className='card-header'>
                                                     <h3>{singleEntry.createdAt}</h3>
@@ -56,4 +56,4 @@ const entryList = ({ users, email }) => {
     )
 }
 
-export default entryList
+export default myEntryList

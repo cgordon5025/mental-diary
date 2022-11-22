@@ -7,19 +7,23 @@ query Users {
       email
       username
       grandparents {
+        grandparentId
         relation
         details
       }
       parents {
+        parentId
         relation
         details
       }
       siblings {
+        siblingId
         name
         relation
         details
       }
       diaryEntry {
+        diaryEntryId
         title
         description
         createdAt
@@ -42,8 +46,29 @@ export const QUERY_ME = gql`
 query me {
     me {
       _id
-      name
-      skills
+      username
+      grandparents {
+        grandparentId
+        relation
+        details
+      }
+      parents {
+        parentId
+        relation
+        details
+      }
+      siblings {
+        siblingId
+        name
+        relation
+        details
+      }
+      diaryEntry {
+        diaryEntryId
+        title
+        description
+        createdAt
+      }
     }
   }
 `;

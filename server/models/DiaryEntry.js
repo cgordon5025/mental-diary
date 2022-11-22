@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 
 const diaryEntrySchema = new Schema(
     {
+        diaryEntryId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId
+        },
         title: {
             type: String,
             required: true,

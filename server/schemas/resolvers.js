@@ -12,7 +12,7 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id });
+                return User.findOne({ _id: context.user._id }).populate('diaryEntry').populate('grandparents').populate('parents').populate('siblings');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -37,34 +37,52 @@ const resolvers = {
             const token = signToken(user)
             return { token, user }
         },
-        addGrand: async (parent, { userId, relation, details }) => {
-            return await User.findByIdAndUpdate(
-                { _id: userId },
-                { $addToSet: { grandparents: { relation, details } } },
-                { new: true }
-            )
+        addGrand: async (parent, { relation, details }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { grandparents: { relation, details } } },
+                    { new: true }
+                );
+                return updatedUser
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
         },
-        addParent: async (parent, { userId, relation, details }) => {
-            return await User.findByIdAndUpdate(
-                { _id: userId },
-                { $addToSet: { parents: { relation, details } } },
-                { new: true }
-            )
+        addParent: async (parent, { relation, details }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { parents: { relation, details } } },
+                    { new: true }
+                );
+                return updatedUser
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
         },
-        addSib: async (parent, { userId, name, relation, details }) => {
-            return await User.findByIdAndUpdate(
-                { _id: userId },
-                { $addToSet: { siblings: { name, relation, details } } },
-                { new: true }
-            )
+        addSib: async (parent, { name, relation, details }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { siblings: { name, relation, details } } },
+                    { new: true }
+                )
+                return updatedUser
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
 
-        addDiaryEntry: async (parent, { userId, title, description }) => {
-            return await User.findByIdAndUpdate(
-                { _id: userId },
-                { $addToSet: { diaryEntry: { title, description } } },
-                { new: true }
-            )
+        addDiaryEntry: async (parent, { title, description }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { diaryEntry: { title, description } } },
+                    { new: true }
+                )
+                return updatedUser
+            }
+            throw new AuthenticationError('You need to be logged in!');
         }
     },
 };

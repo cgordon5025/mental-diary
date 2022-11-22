@@ -17,23 +17,23 @@ const typeDefs = gql`
   }
 
   type Grandparents {
-    _id: ID
+    grandparentId: ID
     relation: String
     details: String
   }
   type Parents {
-    _id: ID
+    parentId: ID
     relation: String
     details: String
   }
   type Siblings {
-    _id: ID
+    siblingId: ID
     name: String
     relation: String
     details: String
   }
   type DiaryEntry {
-    _id: ID
+    diaryEntryId: ID
     title: String
     description: String
     createdAt:String
@@ -49,10 +49,10 @@ const typeDefs = gql`
 type Mutation{
   addUser(username: String!, email: String!, password: String!): Auth
   login(username:String!, password: String!): Auth
-  addGrand(userId:ID!,relation:String,details:String):User
-  addParent(userId:ID!,relation:String!,details:String):User
-  addSib(userId:ID!,name:String!,relation:String!,details:String):User
-  addDiaryEntry(userId:ID!,title:String!, description:String):User
+  addGrand(relation:String,details:String):User
+  addParent(relation:String!,details:String):User
+  addSib(,name:String!,relation:String!,details:String):User
+  addDiaryEntry(title:String!, description:String):User
 }
 `;
 

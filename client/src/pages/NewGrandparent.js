@@ -29,41 +29,47 @@ const NewGrandparent = () => {
         try {
             const { data } = await addGrandparent({
                 variables: { ...formState },
-            });
+            })
+
+            console.log('saving the data');
         } catch (e) {
             console.error(e);
         }
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-lg-10">
-                <div className="card">
-                    <h4 className="card-header p-2">Sign Up</h4>
+        <main className="justify-center mb-4">
+            <div className="d-flex justify-content-center">
+                <div className="justify-content-center card">
+                    <h4 className="card-header p-2">Add a Grandparent</h4>
                     <div className="card-body">
                         {data ? (
                             <p>
                                 Success! You may now head{' '}
-                                <Link to="/diary">back to the homepage.</Link>
+                                <Link to="/singlefamily"></Link>
                             </p>
                         ) : (
-                            <form onSubmit={handleFormSubmit}>
+                            <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleFormSubmit}>
+                                <p> What is this person's name?</p>
                                 <input
-                                    className="form-input"
+                                    className="w-50 form-input"
                                     placeholder="What is this person's name?"
                                     name="relation"
                                     type="relation"
                                     value={formState.relation}
                                     onChange={handleChange}
                                 />
+                                <br></br>
+                                <p> Is there anything else you'd like to say?</p>
                                 <input
-                                    className="form-input"
+                                    className="w-50 form-input"
                                     placeholder="Is there anything you'd like to say about them"
                                     name="details"
                                     type="details"
                                     value={formState.details}
                                     onChange={handleChange}
                                 />
+                                <br></br>
                                 <button
                                     className="btn btn-block btn-info"
                                     style={{ cursor: 'pointer' }}
@@ -71,6 +77,7 @@ const NewGrandparent = () => {
                                 >
                                     Submit
                                 </button>
+                                <br></br>
                             </form>
                         )}
                         {error && (

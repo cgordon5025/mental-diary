@@ -12,7 +12,7 @@ db.once('open', async () => {
     // await Professor.deleteMany({});
 
     // bulk create each model
-    await User.insertMany(userData);
+    await User.create(userData);
     // const classes = await Class.insertMany(classData);
     // const professors = await Professor.insertMany(professorData);
 

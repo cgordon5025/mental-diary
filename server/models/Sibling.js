@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 
 const siblingSchema = new Schema(
     {
+        siblingId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId
+        },
         name: {
             type: String,
             required: true

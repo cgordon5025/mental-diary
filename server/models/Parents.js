@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 
 const parentsSchema = new Schema(
     {
+        parentId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId
+        },
         relation: {
             type: String,
             required: true,

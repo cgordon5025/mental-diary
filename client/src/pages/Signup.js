@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 
 const Signup = () => {
     const [formState, setFormState] = useState({
-        name: '',
+        username: '',
         email: '',
         password: '',
     });
@@ -40,9 +40,9 @@ const Signup = () => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-lg-10">
-                <div className="card">
+        <main className=" justify-center mb-4">
+            <div className="d-flex justify-content-center ">
+                <div style={{ justifyContent: "center" }} className="card">
                     <h4 className="card-header p-2">Sign Up</h4>
                     <div className="card-body">
                         {data ? (
@@ -52,30 +52,39 @@ const Signup = () => {
                             </p>
                         ) : (
                             <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleFormSubmit}>
+                                <p >Username:</p>
                                 <input
                                     className="form-input"
                                     placeholder="Your username"
                                     name="username"
                                     type="username"
+                                    id='user-input'
                                     value={formState.username}
                                     onChange={handleChange}
                                 />
+                                <br></br>
+                                <p >Email:</p>
                                 <input
                                     className="form-input"
                                     placeholder="Your email"
                                     name="email"
                                     type="email"
+                                    id='email-input'
                                     value={formState.email}
                                     onChange={handleChange}
                                 />
+                                <br></br>
+                                <p >Password:</p>
                                 <input
                                     className="form-input"
                                     placeholder="******"
                                     name="password"
                                     type="password"
+                                    id='password-input'
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
+                                <br></br>
                                 <button
                                     className="btn btn-block btn-info"
                                     style={{ cursor: 'pointer' }}
@@ -83,6 +92,8 @@ const Signup = () => {
                                 >
                                     Submit
                                 </button>
+                                <br></br>
+
                             </form>
                         )}
                         <div>

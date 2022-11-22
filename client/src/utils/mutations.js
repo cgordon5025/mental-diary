@@ -25,10 +25,11 @@ mutation Login($username: String!, $password: String!) {
 `;
 
 export const ADD_ENTRY = gql`
-mutation AddDiaryEntry($userId: ID!, $title: String!) {
-    addDiaryEntry(userId: $userId, title: $title) {
+mutation AddDiaryEntry($title: String!, $description:String) {
+    addDiaryEntry(title: $title, description:$description) {
       username
       diaryEntry {
+        diaryEntryId
         title
         description
         createdAt
@@ -37,11 +38,12 @@ mutation AddDiaryEntry($userId: ID!, $title: String!) {
   }`;
 
 export const ADD_GRANDPARENT = gql`
-mutation AddGrand($userId: ID!, $relation: String, $details: String) {
-    addGrand(userId: $userId, relation: $relation, details: $details) {
+mutation AddGrand($relation: String, $details: String) {
+    addGrand(relation: $relation, details: $details) {
       _id
       username
       grandparents {
+        grandparentId
         relation
         details
       }
@@ -50,10 +52,11 @@ mutation AddGrand($userId: ID!, $relation: String, $details: String) {
 `;
 
 export const ADD_PARENT = gql`
-mutation AddParent($userId: ID!, $relation: String!) {
-    addParent(userId: $userId, relation: $relation) {
+mutation AddParent( $relation: String!) {
+    addParent(relation: $relation) {
       username
       parents {
+        parentId
         relation
         details
       }
@@ -61,10 +64,11 @@ mutation AddParent($userId: ID!, $relation: String!) {
   }`;
 
 export const ADD_SIBLING = gql`
-  mutation AddSib($userId: ID!, $relation: String!, $name: String!) {
-    addSib(userId: $userId, relation: $relation, name: $name) {
+  mutation AddSib($relation: String!, $name: String!) {
+    addSib(relation: $relation, name: $name) {
       username
       siblings {
+        siblingId
         name
         relation
         details

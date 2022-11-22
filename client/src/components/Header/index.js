@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import Auth from '../../utils/auth'
+
 const Header = () => {
     return (
         <>
@@ -18,11 +20,17 @@ const Header = () => {
                                 <Link className="nav-link" to="/singlefamily">My Family</Link>
                             </li>
                             <li className="nav-item ">
-                                <Link className="nav-link" to="/login">Login</Link>
+                                <Link className="nav-link" to="/mydiary">My Diary</Link>
                             </li>
-                            <li className="nav-item ">
-                                <Link className="nav-link" to="/logout">Logout</Link>
-                            </li>
+                            {Auth.loggedIn() ?
+                                (<li className="nav-item ">
+                                    <Link onClick={Auth.logout} className="nav-link" to="/">Logout</Link>
+                                </li>) :
+                                (<li className="nav-item ">
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </li>)}
+
+
                         </ul>
                     </div>
                 </nav>

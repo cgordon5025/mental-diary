@@ -41,8 +41,8 @@ const Login = () => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-lg-10">
+        <main className="justify-center mb-4">
+            <div className="d-flex justify-content-center">
                 <div className="card">
                     <h4 className="card-header p-2">Login</h4>
                     <div className="card-body">
@@ -52,15 +52,20 @@ const Login = () => {
                                 <Link to="/">back to the homepage.</Link>
                             </p>
                         ) : (
-                            <form onSubmit={handleFormSubmit}>
+                            <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleFormSubmit}>
+                                <p >Username:</p>
                                 <input
                                     className="form-input"
                                     placeholder="Your username"
                                     name="username"
                                     type="username"
+                                    id='username-input'
                                     value={formState.username}
                                     onChange={handleChange}
                                 />
+                                <br></br>
+
+                                <p >Password:</p>
                                 <input
                                     className="form-input"
                                     placeholder="******"
@@ -69,6 +74,8 @@ const Login = () => {
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
+                                <br></br>
+
                                 <button
                                     className="btn btn-block btn-info"
                                     style={{ cursor: 'pointer' }}
@@ -76,6 +83,8 @@ const Login = () => {
                                 >
                                     Submit
                                 </button>
+                                <br></br>
+
                             </form>
 
                         )}
